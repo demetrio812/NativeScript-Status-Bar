@@ -14,13 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ***************************************************************************** */
 import frame = require("ui/frame");
+import app = require("tns-core-modules/application");
+
+function getApp() {
+    return app.android.foregroundActivity || app.android.startActivity;
+}
 
 export function show()
 {
-    frame.topmost().android.activity.getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_VISIBLE);
+    getApp().getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_VISIBLE);
 }
 
 export function hide()
 {
-    frame.topmost().android.activity.getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_FULLSCREEN);
+    getApp().getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_FULLSCREEN);
 }
